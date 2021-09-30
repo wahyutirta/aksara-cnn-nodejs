@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Digit Recognizer</title>
+
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Still in Beta &hearts;" />
+    <meta
+      name="description"
+      content="Handwritten digit Recognition Application"
+    />
+    <meta
+      name="keywords"
+      content="Tensorflow, Deep learning, MNIST, Handwritten Digit, Web Application"
+    />
+    <!-- modal -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v3.0.6/css/line.css"
+    />
+
+    <!-- GoogleFont -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Calistoga|Josefin+Sans:400,700|Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@100;400&family=Source+Sans+Pro:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/learn.css" />
+    <!-- fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/b3aed9cb07.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <link rel="icon" href="favicon.ico" />
+  </head>
+
+  <body onload="init()">
+    <section id="NavBar">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <a class="navbar-brand" href=""
+            ><img
+              src="ai-logo-white-green.png"
+              alt="Arun Pandian"
+              height="45"
+              width="45"
+            />
+            Still in Beta &hearts;</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarTogglerDemo02"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="" target="_blank">Github</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#social">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <section id="title">
+      <h1 class="heading">Pengenalan Titi Sastra Bali</h1>
+      <p class="description">
+        Sinunggil aplikasi Pengodaran suratan tangan sastre bali sane kawangun
+        antuk framework tensoflow lan keras. UI aplikasi kewangun angge ingkupan
+        pekaryan lan library sekadi Node.js, npm, Bootstrap, jQuery, Ajax. Go
+        Back to home
+        <a href="/">
+          <button class="button back-btn" id="" href="/">Home</button>
+        </a>
+      </p>
+      <hr />
+    </section>
+
+    <section id="content">
+      <!-- aksara modal -->
+      <!-- Button trigger modal -->
+      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Pilih Aksara</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="aksara-card-wrapper"></div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn button button-close"
+                data-bs-dismiss="modal"
+              >
+                Simpan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+
+      <div class="popup">
+        <header>
+          <span>Hasil Mu!</span>
+          <div class="close"><i class="uil uil-times"></i></div>
+        </header>
+        <div class="content">
+          <p class="input-result" id="input-result">Pengujian Input Aksara</p>
+          <p id="">Bagikan Aplikasi Ini!</p>
+          <ul class="icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row"></div>
+      <div class="canvasapp">
+        <div class="row">
+          <div class="browse-aksara-wrapper col-sm-5">
+            <div class="image-aksara-wrapper">
+              <img
+                src="aksara/2_na.png"
+                id="image-box"
+                alt="Girl in a jacket"
+              />
+            </div>
+            <h2 id="aksara-title">Na</h2>
+            <div class="browse-aksara-btn-wrapper">
+              <p id="browse-aksara-heading">Pilih aksara</p>
+
+              <button
+                class="button browse-btn"
+                id=""
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Start!
+              </button>
+            </div>
+          </div>
+
+          <div class="canva-wrapper">
+            <div class="">
+              <canvas id="canvas-box" height="200" width="200"> </canvas>
+            </div>
+            <div class="sub-title">
+              <h2 class="aksaraHeading" id="aksara-heading">--</h2>
+            </div>
+            <div class="buttons-wrap">
+              <button class="button view-modal" id="predict-canvas">
+                Predict
+              </button>
+              <button class="button" id="clear-canvas">Clear</button>
+            </div>
+          </div>
+
+          <div class="predicted_output col-sm-5">
+            <h2 id="prediction_heading">Prediction</h2>
+            <h1 id="result">-</h1>
+            <p id="confidence">Confidence: -</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="instruction">
+      <div class="sub-title">
+        <h2 id="about-title">Instruction</h2>
+      </div>
+      <div class="description">
+        <p class="description">
+          Click on start button to choose Aksara. Draw Aksara on black space
+          then click on
+          <span class="italise-highlight">Predict</span> to see check your
+          drawing. Click on <span class="italise-highlight">Clear</span> to draw
+          fresh.
+        </p>
+      </div>
+    </section>
+
+    <section id="social">
+      <div class="sub-title">
+        <h2 id="social-title">Follow Me</h2>
+      </div>
+      <div class="social-icons">
+        <a href="" class="icon-button twitter"
+          ><i class="icon-twitter fab fa-twitter"></i><span></span
+        ></a>
+        <a href="" class="icon-button facebook"
+          ><i class="icon-facebook fab fa-facebook-f"></i><span></span
+        ></a>
+        <a href="" class="icon-button google-plus"
+          ><i class="icon-google-plus fab fa-linkedin"></i><span></span
+        ></a>
+        <a href="" class="icon-button kaggle"
+          ><i class="icon-kaggle fab fa-kaggle"></i><span></span
+        ></a>
+        <a href="" class="icon-button github"
+          ><i class="icon-github fab fa-github"></i><span></span
+        ></a>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <h6 class="credits">Designed and Developed with &hearts;.</h6>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="js/learn.js" charset="utf-8"></script>
+  </body>
+</html>

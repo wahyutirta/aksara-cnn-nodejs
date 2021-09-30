@@ -1,0 +1,2 @@
+jangan konversi model online !! model jangan bernama kapital!
+tensorflowjs_converter --input_format keras model_python.hdf5 modeljs
