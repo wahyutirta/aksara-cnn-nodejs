@@ -1,7 +1,5 @@
-﻿# Digit Recognizer
-Digit Recognizer is a web-based application which can recognise handwritten digits and classify them. This application is created for the purpose of learning to build a Machine Learning model and deploying it as an app. So, Handwritten Digit Recognition model is based of a Deep Learning architecture and built on TensorFlow framework can recognise digits and classify them into classes. The web application is built primarily on Node.js framework.
-
-Web-app link: https://digit-recognizer-web.herokuapp.com
+﻿# Pengenalan Aksara Bali
+aplikasi ini merupakan aplikasi pengenalan dan penulisan aksara bali berbasis web dimana aplikasi ini dapat mengenali tulisan aksara yang merupakan input dari user dan mengklasifikasikannya ke dalam 18 kelas huruf dasar atau 5 pengangge suara. aplikasi ini dibuat dengan tujuan untuk belajar implementasi sebuah model machine learning (lebih spesifiknya deep learning) dan mendeploy model tersebut ke dalam bentuk aplikasi.
 
 ## Tech Stack
 
@@ -23,14 +21,14 @@ Web-app link: https://digit-recognizer-web.herokuapp.com
  - node.js
 
  ## Instructions 
- - To learn more and to train yourself the Deep Learning model you can refer the interactive python notebook [here](https://github.com/ArunRK7Codie/Digit-Recognizer/tree/master/digit-recognizer-notebook.ipynb). 
+ - jika tidak ditemukan model cnn pada aplikasi, gunakan notebook yang sudah disediakan untuk membentuk dan melatih suatu model deep learning CNN baru
  - To run the application locally on your machine, follow these instructions.
    1.  Clone the repository into your machine.
    2.  Navigate to the project directory in your terminal or command prompt
    3. Execute `npm install` command.
    4.  Execute `npm run` command.  Now the app will be opened on your browser running in a localhost.
   ## Acknowledgements
-  The application is hosted in [Heroku](https://www.heroku.com)- a free cloud platform. The DL model has been developed and trained in [Google Colab](https://colab.research.google.com)- free jupyter notebook environment for developing and training ML models in cloud.
+  gunakan [Google Colab](https://colab.research.google.com)- free jupyter notebook environment untuk membentuk dan melatih ML models in cloud.
 
 ## License
-This project has been licensed under MIT License. You can check the [License file](https://github.com/ArunRK7Codie/Digit-Recognizer/blob/master/LICENSE) to view the license
+This project has been licensed under MIT License.
