@@ -21,24 +21,6 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-// document.getElementById('generate-aksara').addEventListener("click", async function () {
-
-//     rand = getRndInteger(0, 22);
-
-//     const tempAksara = aksara[rand];
-
-//     document.getElementById('aksara-heading').innerHTML = "Tuliskan Aksara " + tempAksara;
-
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     ctx.fillStyle = "black";
-//     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-//     document.getElementById('result').innerHTML = "-";
-//     document.getElementById('confidence').innerHTML = "Confidence -";
-
-
-// });
-
 
 function draw(ctx, x, y, size, isDown) {
 
@@ -162,26 +144,17 @@ function init() {
 var model;
 (async function () {
     console.log("Model Loading.....");
-    model = await tf.loadLayersModel("cnn_model/modeladamjs/model.json");
+    model = await tf.loadLayersModel("cnn_model/modeljs/model.json");
     console.log("Model Loaded.....");
 
 })();
 //let model;
 
 
-// (async function(){
-//     console.log(base_url);
-//     console.log("Model Loading.....");
-//     model = await tf.loadLayersModel("cnn_model/model-2.json");
-//     console.log("Model loaded...");
-// })();
-
-
-
 function preprocessCanvas(image) {
     // resize the input image to target size of (1, 28, 28)
     let tensor = tf.browser.fromPixels(image, 1)
-        .resizeNearestNeighbor([64, 64])
+        .resizeNearestNeighbor([32, 32])
         .mean(2)
         .expandDims(2)
         .expandDims()

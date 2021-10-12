@@ -158,20 +158,11 @@ function init() {
 var model;
 (async function () {
     console.log("Model Loading.....");
-    model = await tf.loadLayersModel("cnn_model/modelaksara/model.json");
+    model = await tf.loadLayersModel("cnn_model/modeljs/model.json");
     console.log("Model Loaded.....");
 
 })();
 //let model;
-
-
-// (async function(){
-//     console.log(base_url);
-//     console.log("Model Loading.....");
-//     model = await tf.loadLayersModel("cnn_model/model-2.json");
-//     console.log("Model loaded...");
-// })();
-
 
 
 function preprocessCanvas(image) {

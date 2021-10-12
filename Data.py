@@ -95,14 +95,14 @@ class Data:
                     #print(file_path)
                     img = cv2.imread(file_path)
                     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                    img = cv2.resize(img, (64,64), interpolation = cv2.INTER_AREA)
+                    img = cv2.resize(img, (32,32), interpolation = cv2.INTER_AREA)
                     thresh, bw = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
                     
 
                     swap = 255 * (bw==0).astype(int)
                     #print(swap)
                     #break
-                    swap = swap.reshape((1,64,64))
+                    swap = swap.reshape((1,32,32))
                     ##img = rearrange(swap, ' h w c ->  c h w ')
 
                     #arr_label.append(i-1)
@@ -159,82 +159,6 @@ class Data:
         #print(self.arrayFNameTest)
         return self.trainSet, self.trainLabel, self.testSet, self.testLabel
     
-
-    def loadtest(self,trainRatio=0.8,testRatio=0.2):
-        temp_mod = math.ceil(trainRatio/testRatio)
-
-        arr_Namelabel = []
-        self.count = 0
-        for i, (dirpath, dirnames, filenames) in tqdm(enumerate(os.walk(self.imagePath)), desc= "Loading Image Data"):
-            #print('{} {} {}'.format(repr(dirpath), repr(dirnames), repr(filenames)))
-            #print(i)
-            if dirpath is not self.imagePath:
-                dirpath_components = dirpath.split("/")
-
-                listImageTest = []
-                listLabelTest = []
-                testFName = []
-                semantic_label = dirpath_components[-1]
-                
-                _, label = os.path.split(semantic_label)
-
-                #print("\nProcessing {}, {}".format(semantic_label,i))
-                arr_Namelabel.append(label)
-                self.count = 0
-                train = 0
-                test = 0
-
-                for f in filenames:
-                    #load images
-                    file_path = os.path.join(dirpath, f)
-                    #print(file_path)
-                    img = cv2.imread(file_path)
-                    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-                    img = rearrange(img, ' h w c ->  c h w ')
-
-                    #arr_label.append(i-1)
-                    # if mod append to test
-                    if self.count % temp_mod == 0:
-                        
-                        listImageTest.append(img)
-                        listLabelTest.append(i-1)
-                        testFName.append(f)
-                        test+= 1
-                    # if not mod append to train
-                    else:
-                        pass
-                        
-                    self.count+=1
-        
-                arrayImageTest = np.array(listImageTest, dtype='float64') / 255
-
-                #print(np.array(arr_img).shape)
-                arrayLabelTest = np.array(listLabelTest)
-
-                arrayFNameTest = np.array(testFName)
-
-                
-                self.labelName = np.array(arr_Namelabel)
-                self.jum_kelas = len(self.labelName)
-
-                if not hasattr(self, 'testSet'):
-
-                    self.testSet = arrayImageTest
-                    self.testLabel = arrayLabelTest
- 
-                    self.arrayFNameTest = arrayFNameTest
-                else:
-
-                    self.testSet = np.concatenate((self.testSet, arrayImageTest), axis = 0)
-                    self.testLabel = np.concatenate((self.testLabel, arrayLabelTest), axis = 0)
-                    self.arrayFNameTest = np.concatenate((self.arrayFNameTest, arrayFNameTest), axis = 0)
-
-        #print(self.arrayFNameTest)
-        #self.testSet, self.testLabel, self.arrayFNameTest  = self.unison_shuffled_copies_4(self.testSet, self.testLabel, self.arrayFNameTest)
-        #print(self.arrayFNameTest)
-        return self.testSet, self.testLabel, self.arrayFNameTest
-                
-
 
 #mainPath = os.path.dirname(os.path.abspath(__file__)) #file path main.py
 #workPath = os.path.split(mainPath) #path working folder (whole file project)
