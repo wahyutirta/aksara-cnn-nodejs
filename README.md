@@ -22,11 +22,12 @@ aplikasi ini merupakan aplikasi pengenalan dan penulisan aksara bali berbasis we
 
  ## Instructions 
  - jika tidak ditemukan model cnn pada aplikasi, gunakan notebook yang sudah disediakan untuk membentuk dan melatih suatu model deep learning CNN baru
- - To run the application locally on your machine, follow these instructions.
-   1.  Clone the repository into your machine.
-   2.  Navigate to the project directory in your terminal or command prompt
-   3. Execute `npm install` command.
-   4.  Execute `npm run` command.  Now the app will be opened on your browser running in a localhost.
+ - untuk menjalankan project ini secara lokal di perangkatmu, ikuti langkah-langkah berikut.
+   1. Clone repositori ini ke dalam perangkatmu.
+   2. Buka dokumen proyek yang telah berhasil didownload/clone
+   3. Jalankan perintah `npm install` command untuk melakukan instalasi beberapa library yang dibutuhkan.
+   4. Jalankan perintah `npm run` command. maka secara otomatis proyek ini akan berjalan secara lokal pada link berikut http://localhost:3000/.
+   4.1 anda juga dapat menggunakan library nodemon dari npm untuk menjalankan proyek secara local di perangkat anda pada link berikut http://localhost:3000/
   ## Acknowledgements
   gunakan [Google Colab](https://colab.research.google.com)- free jupyter notebook environment untuk membentuk dan melatih ML models in cloud.
 
