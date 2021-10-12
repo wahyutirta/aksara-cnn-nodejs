@@ -27,7 +27,7 @@ aplikasi ini merupakan aplikasi pengenalan dan penulisan aksara bali berbasis we
    2. Buka dokumen proyek yang telah berhasil didownload/clone
    3. Jalankan perintah `npm install` command untuk melakukan instalasi beberapa library yang dibutuhkan.
    4. Jalankan perintah `npm run` command. maka secara otomatis proyek ini akan berjalan secara lokal pada link berikut http://localhost:3000/.
-   4.1 anda juga dapat menggunakan library nodemon dari npm untuk menjalankan proyek secara local di perangkat anda pada link berikut http://localhost:3000/
+   4.1 anda juga dapat menggunakan library nodemon dari npm dengan cara `nodemon app.js` untuk menjalankan proyek secara local di perangkat anda pada link berikut http://localhost:3000/
   ## Acknowledgements
   gunakan [Google Colab](https://colab.research.google.com)- free jupyter notebook environment untuk membentuk dan melatih ML models in cloud.
 
